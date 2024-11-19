@@ -417,6 +417,11 @@ input:checked+.slider:after {
   background: #1772d0;
 }
 
+
+/* .method-pill.active {
+  background: #1772d0;
+} */
+
 .button {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
