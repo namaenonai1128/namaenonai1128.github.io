@@ -173,15 +173,15 @@
                             </div>
                         </div>
         
-                        <table style="margin-left: auto; margin-right: auto; width: 90%;">
+                        <table style="margin-left: auto; margin-right: auto; width: 75%;">
                             <tr>
                               <th style="text-align: center;width: 10%;">Input</th>
                               <th style="text-align: center;width: 30%;">4DiM</th>
                               <th style="text-align: center;width: 30%;">Ours</th>
-                              <th style="text-align: center;width: 30%;">GT</th>
+                              <th id="cameratime-video-th" style="text-align: center;width: 30%;">GT</th>
                             </tr>
                             <tr>
-                              <td rowspan="1" colspan="4" style="width: 100%">
+                              <td id="cameratime-video-td" rowspan="1" colspan="4" style="width: 100%">
                                 <video id="cameratime_video" class="video" width=100% loop playsinline autoplay muted controls>
                                     <source src="videos/cameratime/skating/fixcam_movetime.mp4" />
                                 </video>
@@ -192,20 +192,42 @@
                     </div>
 
                     <div class="pill-row scene-pills" id="cameratime-pills" role="group" aria-relevant="additions text">
-                        <div class="pill scene-pill" data-value="balloon1">
-                            <img class="card-img" src="videos/cameratime/balloon1/thumbnail.png">
+                        <div class="pill scene-pill" data-value="haru-sit">
+                            <img class="card-img" src="videos/cameratime/haru-sit/thumbnail.png">
                         </div>
-                        <div class="pill scene-pill" data-value="balloon2">
-                            <img class="card-img" src="videos/cameratime/balloon2/thumbnail.png">
+                        <div class="pill scene-pill" data-value="pillow">
+                            <img class="card-img" src="videos/cameratime/pillow/thumbnail.png">
                         </div>
-                        <div class="pill scene-pill" data-value="playground">
-                            <img class="card-img" src="videos/cameratime/playground/thumbnail.png">
+                        <div class="pill scene-pill" data-value="space-out">
+                            <img class="card-img" src="videos/cameratime/space-out/thumbnail.png">
                         </div>
-                        <div class="pill scene-pill" data-value="skating">
-                            <img class="card-img" src="videos/cameratime/skating/thumbnail.png">
+                        <div class="pill scene-pill" data-value="wt0013">
+                            <img class="card-img" src="videos/cameratime/wt0013/thumbnail.png">
                         </div>
-                        <div class="pill scene-pill" data-value="umbrella">
-                            <img class="card-img" src="videos/cameratime/umbrella/thumbnail.png">
+                        <div class="pill scene-pill" data-value="wt0120">
+                            <img class="card-img" src="videos/cameratime/wt0120/thumbnail.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0177">
+                            <img class="card-img" src="videos/cameratime/wt0177/thumbnail.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0409">
+                            <img class="card-img" src="videos/cameratime/wt0409/thumbnail.png">
+                        </div>
+                        <br>
+                        <div class="pill scene-pill" data-value="balloon1_gt">
+                            <img class="card-img" src="videos/cameratime/balloon1_gt/thumbnail.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="balloon2_gt">
+                            <img class="card-img" src="videos/cameratime/balloon2_gt/thumbnail.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="playground_gt">
+                            <img class="card-img" src="videos/cameratime/playground_gt/thumbnail.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="skating_gt">
+                            <img class="card-img" src="videos/cameratime/skating_gt/thumbnail.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="umbrella_gt">
+                            <img class="card-img" src="videos/cameratime/umbrella_gt/thumbnail.png">
                         </div>
                     </div>
                 </div>
@@ -214,7 +236,7 @@
 
             <script>
                 compareDiv = document.querySelector("#cameratime-compare")
-                activeScene_cameratime = "umbrella"
+                activeScene_cameratime = "umbrella_gt"
                 activeMethod_cameratime = "fixcam_movetime"
 
                 const methodPills_cameratime = compareDiv.querySelectorAll('.method-pill');
@@ -252,6 +274,19 @@
                         }
                     }
                     showVideo_cameratime.src = `videos/cameratime/${activeScene_cameratime}/${activeMethod_cameratime}.mp4`
+                    const tdElement = document.getElementById("cameratime-video-td");
+                    // if bullettime-video-td ends with "render", then set colSpan to 3
+                    if (activeScene_cameratime.endsWith("gt")) {
+                        tdElement.colSpan = 4;
+                    } else {
+                        tdElement.colSpan = 3;
+                    }
+                    const thElement = document.getElementById("cameratime-video-th");
+                    if (activeScene_cameratime.endsWith("gt")) {
+                        thElement.style.display = "table-cell";
+                    } else {
+                        thElement.style.display = "none";
+                    }
                 }
                 // Update initial display
                 updateDisplayCameraTime()
@@ -265,7 +300,8 @@
                     <div class="col-md-8 offset-md-2">
                         <h3> Sparse-view bullet-time 3D reconstruction </h3>
                         <p class="text-justify" style="text-align: left;">
-                            Given only a few posed images of a dynamic scene, we can create a ``bullet-time'' effect by reconstructing a static 3D scene corresponding to the time of one input view.
+                            Given only a few posed images of a dynamic scene, we can create a ''bullet-time'' effect by reconstructing a static 3D scene corresponding to the time of one input view.
+                            The three input images are shown on the left, where the first one is the target bullet-time frame.
                         </p>
                         <table style="margin-left: auto; margin-right: auto; width: 90%;">
                             <tr>
@@ -273,10 +309,10 @@
                               <th style="text-align: center;width: 23%;">CAT3D-1cond</th>
                               <th style="text-align: center;width: 23%;">CAT3D-3cond</th>
                               <th style="text-align: center;width: 23%;">Ours</th>
-                              <th style="text-align: center;width: 23%;">GT</th>
+                              <th id="bullettime-video-gt-th" style="text-align: center;width: 23%;">GT</th>
                             </tr>
                             <tr>
-                              <td rowspan="1" colspan="5" style="width: 100%">
+                              <td id="bullettime-video-td" rowspan="1" colspan="4" style="width: 100%">
                                 <video id="bullettime-video" class="video" width=100% loop playsinline autoplay muted controls>
                                     <source src="videos/bullettime3d/Jumping.mp4" />
                                 </video>
@@ -288,19 +324,41 @@
                 </div>
 
                 <div class="pill-row scene-pills" id="bullettime-pills" role="group" aria-relevant="additions text">
-                    <div class="pill scene-pill" data-value="balloon1">
+                    <div class="pill scene-pill" data-value="apple1">
+                        <img class="card-img" src="videos/bullettime3d/apple1.png">
+                    </div>
+                    <div class="pill scene-pill" data-value="backpack1">
+                        <img class="card-img" src="videos/bullettime3d/backpack1.png">
+                    </div>
+                    <div class="pill scene-pill" data-value="mochi0">
+                        <img class="card-img" src="videos/bullettime3d/mochi0.png">
+                    </div>
+                    <div class="pill scene-pill" data-value="sriracha0">
+                        <img class="card-img" src="videos/bullettime3d/sriracha0.png">
+                    </div>
+                    <div class="pill scene-pill" data-value="wt0000">
+                        <img class="card-img" src="videos/bullettime3d/wt0000.png">
+                    </div>
+                    <div class="pill scene-pill" data-value="wt0003">
+                        <img class="card-img" src="videos/bullettime3d/wt0003.png">
+                    </div>
+                    <div class="pill scene-pill" data-value="wt0004">
+                        <img class="card-img" src="videos/bullettime3d/wt0004.png">
+                    </div>
+                    <br>
+                    <div class="pill scene-pill" data-value="balloon1_gt">
                         <img class="card-img" src="videos/bullettime3d/balloon1.png">
                     </div>
                     <div class="pill scene-pill" data-value="jumping">
                         <img class="card-img" src="videos/bullettime3d/jumping.png">
                     </div>
-                    <div class="pill scene-pill" data-value="playground">
+                    <div class="pill scene-pill" data-value="playground_gt">
                         <img class="card-img" src="videos/bullettime3d/playground.png">
                     </div>
                     <div class="pill scene-pill" data-value="skating">
                         <img class="card-img" src="videos/bullettime3d/skating.png">
                     </div>
-                    <div class="pill scene-pill" data-value="umbrella">
+                    <div class="pill scene-pill" data-value="umbrella_gt">
                         <img class="card-img" src="videos/bullettime3d/umbrella.png">
                     </div>
                 </div>
@@ -331,6 +389,19 @@
                         }
                     }
                     showVideo_bullet.src = `videos/bullettime3d/${activeScene_bullet}.mp4`
+                    const tdElement = document.getElementById("bullettime-video-td");
+                    // if bullettime-video-td ends with "render", then set colSpan to 3
+                    if (activeScene_bullet.endsWith("gt")) {
+                        tdElement.colSpan = 5;
+                    } else {
+                        tdElement.colSpan = 4;
+                    }
+                    const thElement = document.getElementById("bullettime-video-gt-th");
+                    if (activeScene_bullet.endsWith("gt")) {
+                        thElement.style.display = "table-cell";
+                    } else {
+                        thElement.style.display = "none";
+                    }
                 }
                 // Update initial display
                 updateDisplayBullet()
