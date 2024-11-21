@@ -109,10 +109,10 @@
                         </span>
                         <span>arXiv</span>
                     </a>
-                    <a href="gallery.html" class="external-link button is-normal is-rounded is-dark"
+                    <!-- <a href="gallery.html" class="external-link button is-normal is-rounded is-dark"
                         style="width: 120px; font-size: 15px">
                         <span>Gallery</span>
-                    </a>
+                    </a> -->
                 </span>
             </div>
         </header>
@@ -251,6 +251,7 @@
                         }
                     }
                     showVideo_cameratime.src = `videos/cameartime_ours/${activeScene_cameratime}.mp4`
+                    showVideo_cameratime.playbackRate = 2.0;
                 }
                 // Update initial display
                 updateDisplayCameraTime()
@@ -636,7 +637,7 @@
                             <tr>
                                 <td id="cameratime-video-td" rowspan="1" colspan="4" style="width: 100%">
                                 <video id="cameratime-video" class="video" width=100% loop playsinline autoplay muted controls>
-                                    <source src="videos/cameratime/skating/fixcam_movetime.mp4" />
+                                    <source src="videos/cameratime/umbrella_gt/fixcam_movetime.mp4" />
                                 </video>
                                 </td>
                             </tr>
