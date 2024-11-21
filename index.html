@@ -151,6 +151,114 @@
             </div><br><br>
 
 
+            <div id="viewer">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h3>Interactive Viewer</h3>
+                        <p class="text-justify" style="text-align: left;">
+                            TBA.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            
+            <div id="cameratime-ours">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h3> Separate camera and time control</h3>
+                        <p class="text-justify" style="text-align: left;">
+                            At the core of CAT4D is a multi-view video diffusion model that disentangles the controls of camera and scene motions.
+                            We demonstrate this by generating generate three types of output sequences given 3 input images (with camera poses): 1) fixed viewpoint and varying time, 2) varying viewpoint and fixed time, and 3) varying viewpoint and varying time.
+                        </p>
+
+                        <table style="margin-left: auto; margin-right: auto; width: 100%;">
+                            <tr>
+                              <th style="text-align: center;width: 10%;">Input</th>
+                              <th style="text-align: center;width: 30%;">Fixed View<br>Varying Time</th>
+                              <th style="text-align: center;width: 30%;">Varying View<br>Fixed Time</th>
+                              <th style="text-align: center;width: 30%;">Varying View<br>Varying Time</th>
+                            </tr>
+                            <tr>
+                              <td rowspan="1" colspan="4" style="width: 100%">
+                                <video id="cameratime_ours_video" class="video" width=100% loop playsinline autoplay muted controls>
+                                    <source src="videos/cameartime_ours/wt0177.mp4" />
+                                </video>
+                              </td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+
+                    <div class="pill-row scene-pills" id="cameratime-pills" role="group" aria-relevant="additions text">
+                        <div class="pill scene-pill" data-value="backpack">
+                            <img class="card-img" src="videos/cameartime_ours/backpack.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="block">
+                            <img class="card-img" src="videos/cameartime_ours/block.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="haru-sit">
+                            <img class="card-img" src="videos/cameartime_ours/haru-sit.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="pillow">
+                            <img class="card-img" src="videos/cameartime_ours/pillow.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="space-out">
+                            <img class="card-img" src="videos/cameartime_ours/space-out.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="umbrella">
+                            <img class="card-img" src="videos/cameartime_ours/umbrella.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0013">
+                            <img class="card-img" src="videos/cameartime_ours/wt0013.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0120">
+                            <img class="card-img" src="videos/cameartime_ours/wt0120.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0177">
+                            <img class="card-img" src="videos/cameartime_ours/wt0177.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0409">
+                            <img class="card-img" src="videos/cameartime_ours/wt0409.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <script>
+                compareDiv = document.querySelector("#cameratime-ours")
+                activeScene_cameratime = "wt0177"
+
+                const methodPills_cameratime = compareDiv.querySelectorAll('.method-pill');
+                const scenePills_cameratime = compareDiv.querySelectorAll(".scene-pill")
+                const showVideo_cameratime = compareDiv.querySelector('#cameratime_ours_video')
+
+                for (scenePill of scenePills_cameratime) {
+                    scenePill.addEventListener('click', function () {
+                        activeScene_cameratime = this.getAttribute('data-value');
+                        updateDisplayCameraTime();
+                    });
+                }
+
+                function updateDisplayCameraTime() {
+                    for (scenePill of scenePills_cameratime) {
+                        if (scenePill.getAttribute('data-value') == activeScene_cameratime) {
+                            scenePill.classList.add('active');
+                        } else {
+                            scenePill.classList.remove('active')
+                        }
+                    }
+                    showVideo_cameratime.src = `videos/cameartime_ours/${activeScene_cameratime}.mp4`
+                }
+                // Update initial display
+                updateDisplayCameraTime()
+
+            </script>
+
+            <!-- 
+
             <div id="cameratime-compare">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -293,8 +401,8 @@
 
             </script>
 
-
-                        
+ -->
+<!-- 
             <div id="bullettime-compare">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -408,9 +516,9 @@
 
             </script>
             <br><br>
-            
+             -->
 
-
+<!-- 
             <div id="dycheck-compare">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -420,14 +528,15 @@
                         </p>
                         <table style="margin-left: auto; margin-right: auto; width: 90%;">
                             <tr>
-                            <th style="text-align: center;width: 20%;">4D-GS</th>
-                            <th style="text-align: center;width: 20%;">MoSca</th>
-                            <th style="text-align: center;width: 20%;">Ours</th>
-                            <th style="text-align: center;width: 20%;">Ground Truth</th>
-                            <th style="text-align: center;width: 20%;">Input</th>
+                            <th style="text-align: center;width: 16%;">4D-GS</th>
+                            <th style="text-align: center;width: 16%;">Shape-of-Motion</th>
+                            <th style="text-align: center;width: 16%;">MoSca</th>
+                            <th style="text-align: center;width: 16%;">Ours</th>
+                            <th style="text-align: center;width: 16%;">Ground Truth</th>
+                            <th style="text-align: center;width: 16%;">Input</th>
                             </tr>
                             <tr>
-                            <td rowspan="1" colspan="5" style="width: 100%">
+                            <td rowspan="1" colspan="6" style="width: 100%">
                                 <video id="dycheck-video" class="video" width=100% loop playsinline autoplay muted controls>
                                     <source src="videos/dycheck/teddy.mp4" />
                                 </video>
@@ -485,6 +594,350 @@
                 }
                 // Update initial display
                 updateDisplayDycheck()
+
+            </script>
+ -->
+
+
+            <div id="comparison">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h3> Comparisons </h3>
+                        <p class="text-justify" style="text-align: left;">
+                            Compare our method to baselines on different tasks. Try selecting different tasks and scenes!
+                        </p>
+                        <ul class="nav nav-pills justify-content-center" role="navigation">
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+                                    style="width: 60px;"><strong>Task:</strong></a>
+                            </li>
+                            <li class="nav-item method-pill" data-value="cameratime"><a class="nav-link">Separate control over<br>camera and time<span style="font-size: 10px;"></span></a></li>
+                            <li class="nav-item method-pill" data-value="bullettime3d"><a class="nav-link">Sparse-view Bullet-time<br>3D reconstruction<span style="font-size: 10px;"></span></a></li>
+                            <li class="nav-item method-pill" data-value="dycheck"><a class="nav-link active">4D reconstruction<br>from monocular video<span style="font-size: 10px;"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+
+                <div id="cameratime-compare" class="row method-block" style="display: none;">
+                    <div class="col-md-8 offset-md-2">
+                        <p class="text-justify" style="text-align: left;">
+                            Given 3 input images, we generate three types of output sequences: 1) fixed viewpoint and varying time, 2) varying viewpoint and fixed time, and 3) varying viewpoint and varying time.
+                        </p>
+
+        
+                        <table style="margin-left: auto; margin-right: auto; width: 75%;">
+                            <tr>
+                                <th style="text-align: center;width: 10%;">Input</th>
+                                <th style="text-align: center;width: 30%;">4DiM</th>
+                                <th style="text-align: center;width: 30%;">Ours</th>
+                                <th id="cameratime-video-th" style="text-align: center;width: 30%;">GT</th>
+                            </tr>
+                            <tr>
+                                <td id="cameratime-video-td" rowspan="1" colspan="4" style="width: 100%">
+                                <video id="cameratime-video" class="video" width=100% loop playsinline autoplay muted controls>
+                                    <source src="videos/cameratime/skating/fixcam_movetime.mp4" />
+                                </video>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="row m-2">
+                            <div class="col-md-11">
+                                <ul class="nav nav-pills justify-content-center" role="navigation">
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+                                            style="width: 110px"><strong>Output types:</strong></a>
+                                    </li>
+                                    <li class="nav-item mode-pill" data-value="fixcam_movetime"><a class="nav-link active">Fixed View<br>Varying Time<span style="font-size: 10px;"></span></a></li>
+                                    <li class="nav-item mode-pill" data-value="movecam_fixtime"><a class="nav-link">Varying View<br>Fixed Time<span style="font-size: 10px;"></span></a></li>
+                                    <li class="nav-item mode-pill" data-value="movecam_movetime"><a class="nav-link">Varying View<br>Varying Time<span style="font-size: 10px;"></span></a> </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pill-row scene-pills" id="cameratime-pills" role="group" aria-relevant="additions text">
+                            <div class="pill scene-pill" data-value="haru-sit">
+                                <img class="card-img" src="videos/cameratime/haru-sit/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="pillow">
+                                <img class="card-img" src="videos/cameratime/pillow/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="space-out">
+                                <img class="card-img" src="videos/cameratime/space-out/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="wt0013">
+                                <img class="card-img" src="videos/cameratime/wt0013/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="wt0120">
+                                <img class="card-img" src="videos/cameratime/wt0120/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="wt0177">
+                                <img class="card-img" src="videos/cameratime/wt0177/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="wt0409">
+                                <img class="card-img" src="videos/cameratime/wt0409/thumbnail.png">
+                            </div>
+                            <br>
+                            <div class="pill scene-pill" data-value="balloon1_gt">
+                                <img class="card-img" src="videos/cameratime/balloon1_gt/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="balloon2_gt">
+                                <img class="card-img" src="videos/cameratime/balloon2_gt/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="playground_gt">
+                                <img class="card-img" src="videos/cameratime/playground_gt/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="skating_gt">
+                                <img class="card-img" src="videos/cameratime/skating_gt/thumbnail.png">
+                            </div>
+                            <div class="pill scene-pill" data-value="umbrella_gt">
+                                <img class="card-img" src="videos/cameratime/umbrella_gt/thumbnail.png">
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                </div>
+    
+                <div id="bullettime3d-compare" class="row method-block" style="display: none;">
+                    <div class="col-md-8 offset-md-2">
+                        <!-- <h3> Comparison </h3> -->
+                        <p class="text-justify" style="text-align: left;">
+                            Given only a few posed images of a dynamic scene, we can create a ''bullet-time'' effect by reconstructing a static 3D scene corresponding to the time of one input view.
+                            The three input images are shown on the left, where the first one is the target bullet-time frame.
+                        </p>
+                        <table style="margin-left: auto; margin-right: auto; width: 90%;">
+                            <tr>
+                              <th style="text-align: center;width: 8%;">Input</th>
+                              <th style="text-align: center;width: 23%;">CAT3D-1cond</th>
+                              <th style="text-align: center;width: 23%;">CAT3D-3cond</th>
+                              <th style="text-align: center;width: 23%;">Ours</th>
+                              <th id="bullettime3d-gt-th" style="text-align: center;width: 23%;">GT</th>
+                            </tr>
+                            <tr>
+                              <td id="bullettime3d-td" rowspan="1" colspan="4" style="width: 100%">
+                                <video id="bullettime3d-video" class="video" width=100% loop playsinline autoplay muted controls>
+                                    <source src="videos/bullettime3d/Jumping.mp4" />
+                                </video>
+                              </td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+
+                    <div class="pill-row scene-pills" id="bullettime3d-pills" role="group" aria-relevant="additions text">
+                        <div class="pill scene-pill" data-value="apple1">
+                            <img class="card-img" src="videos/bullettime3d/apple1.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="backpack1">
+                            <img class="card-img" src="videos/bullettime3d/backpack1.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="mochi0">
+                            <img class="card-img" src="videos/bullettime3d/mochi0.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="sriracha0">
+                            <img class="card-img" src="videos/bullettime3d/sriracha0.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0000">
+                            <img class="card-img" src="videos/bullettime3d/wt0000.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0003">
+                            <img class="card-img" src="videos/bullettime3d/wt0003.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="wt0004">
+                            <img class="card-img" src="videos/bullettime3d/wt0004.png">
+                        </div>
+                        <br>
+                        <div class="pill scene-pill" data-value="balloon1_gt">
+                            <img class="card-img" src="videos/bullettime3d/balloon1.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="jumping">
+                            <img class="card-img" src="videos/bullettime3d/jumping.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="playground_gt">
+                            <img class="card-img" src="videos/bullettime3d/playground.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="skating">
+                            <img class="card-img" src="videos/bullettime3d/skating.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="umbrella_gt">
+                            <img class="card-img" src="videos/bullettime3d/umbrella.png">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="dycheck-compare" class="row method-block" style="display: block;">
+                    <div class="col-md-8 offset-md-2">
+                        <p class="text-justify" style="text-align: left;">
+                            Comparison of dynamic scene reconstruction from monocular videos on the DyCheck dataset.
+                        </p>
+                        <table style="margin-left: auto; margin-right: auto; width: 90%;">
+                            <tr>
+                            <th style="text-align: center;width: 16%;">4D-GS</th>
+                            <th style="text-align: center;width: 16%;">Shape-of-Motion</th>
+                            <th style="text-align: center;width: 16%;">MoSca</th>
+                            <th style="text-align: center;width: 16%;">Ours</th>
+                            <th style="text-align: center;width: 16%;">Ground Truth</th>
+                            <th style="text-align: center;width: 16%;">Input</th>
+                            </tr>
+                            <tr>
+                            <td rowspan="1" colspan="6" style="width: 100%">
+                                <video id="dycheck-video" class="video" width=100% loop playsinline autoplay muted controls>
+                                    <source src="videos/dycheck/teddy.mp4" />
+                                </video>
+                            </td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+
+                    <div class="pill-row scene-pills" id="dycheck-pills" role="group" aria-relevant="additions text">
+                        <div class="pill scene-pill" data-value="apple">
+                            <img class="card-img" src="videos/dycheck/apple.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="block">
+                            <img class="card-img" src="videos/dycheck/block.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="paper-windmill">
+                            <img class="card-img" src="videos/dycheck/paper-windmill.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="spin">
+                            <img class="card-img" src="videos/dycheck/spin.png">
+                        </div>
+                        <div class="pill scene-pill" data-value="teddy">
+                            <img class="card-img" src="videos/dycheck/teddy.png">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br><br>
+
+            <script>
+                compareDiv = document.querySelector("#comparison")
+                const methodPills = compareDiv.querySelectorAll('.method-pill');
+
+                activeMethod = "dycheck"
+                activeCameratimeMode = "fixcam_movetime"
+                // activeScene = "jumping"
+                activeScenePerMethod = {
+                    "cameratime": "umbrella_gt",
+                    "bullettime3d": "jumping",
+                    "dycheck": "teddy"
+                }
+
+                for (methodPill of methodPills) {
+                    const method = methodPill.getAttribute('data-value');
+                    console.log(method)
+                    methodDiv = compareDiv.querySelector(`#${method}-compare`);
+                    console.log(methodDiv)
+
+                    const scenePillContainer = methodDiv.querySelector(`#${method}-pills`);
+                    const scenePills = scenePillContainer.querySelectorAll('.scene-pill');
+                    const showVideo = methodDiv.querySelector(`#${method}-video`);
+
+                    for (scenePill of scenePills) {
+                        scenePill.addEventListener('click', function () {
+                            // activeScene = this.getAttribute('data-value');
+                            // activeScene = this.getAttribute('data-value');
+                            activeScenePerMethod[method] = this.getAttribute('data-value');
+                            updateDisplayCompare();
+                        });
+                    }
+
+                    methodPill.addEventListener('click', function () {
+                        activeMethod = this.getAttribute('data-value');
+                        updateDisplayCompare();
+                    });
+                }
+
+                const cameratime_modePills = compareDiv.querySelectorAll('.mode-pill');
+                for (modePill of cameratime_modePills) {
+                    modePill.addEventListener('click', function () {
+                        activeCameratimeMode = this.getAttribute('data-value');
+                        updateDisplayCompare();
+                    });
+                }
+
+                function updateDisplayCompare() {
+                    for (methodPill of methodPills) {
+                        if (methodPill.getAttribute('data-value') == activeMethod) {
+                            methodPill.querySelector('a').classList.add('active');
+                        } else {
+                            methodPill.querySelector('a').classList.remove('active')
+                        }
+                    }
+                    method_blocks = compareDiv.querySelectorAll('.method-block');
+                    for (method_block of method_blocks) {
+                        console.log(method_block.id)
+                        if (method_block.id == `${activeMethod}-compare`) {
+                            method_block.style.display = "block";
+                            methodDiv = compareDiv.querySelector(`#${activeMethod}-compare`);
+
+                            const scenePillContainer = methodDiv.querySelector(`#${activeMethod}-pills`);
+                            const scenePills = scenePillContainer.querySelectorAll('.scene-pill');
+                            const showVideo = methodDiv.querySelector(`#${activeMethod}-video`);
+
+                            activeScene = activeScenePerMethod[activeMethod]
+
+                            for (scenePill of scenePills) {
+                                if (scenePill.getAttribute('data-value') == activeScene) {
+                                    scenePill.classList.add('active');
+                                } else {
+                                    scenePill.classList.remove('active')
+                                }
+                            }
+                            if (activeMethod == "cameratime"){
+                                showVideo.src = `videos/cameratime/${activeScene}/${activeCameratimeMode}.mp4`
+                                const tdElement = document.getElementById("cameratime-video-td");
+                                if (activeScene.endsWith("gt")) {
+                                    tdElement.colSpan = 4;
+                                } else {
+                                    tdElement.colSpan = 3;
+                                }
+                                const thElement = document.getElementById("cameratime-video-th");
+                                if (activeScene.endsWith("gt")) {
+                                    thElement.style.display = "table-cell";
+                                } else {
+                                    thElement.style.display = "none";
+                                }
+                                for (modePill of cameratime_modePills) {
+                                    if (modePill.getAttribute('data-value') == activeCameratimeMode) {
+                                        modePill.querySelector('a').classList.add('active');
+                                    } else {
+                                        modePill.querySelector('a').classList.remove('active')
+                                    }
+                                }
+
+                            } else if (activeMethod == "bullettime3d") {
+                                showVideo.src = `videos/bullettime3d/${activeScene}.mp4`
+                                const tdElement = document.getElementById("bullettime3d-td");
+                                if (activeScene.endsWith("gt")) {
+                                    tdElement.colSpan = 5;
+                                } else {
+                                    tdElement.colSpan = 4;
+                                }
+                                const thElement = document.getElementById("bullettime3d-gt-th");
+                                if (activeScene.endsWith("gt")) {
+                                    thElement.style.display = "table-cell";
+                                } else {
+                                    thElement.style.display = "none";
+                                }
+
+                            } else if (activeMethod == "dycheck") {
+                                showVideo.src = `videos/dycheck/${activeScene}.mp4`
+                            }
+
+                        } else {
+                            method_block.style.display = "none";
+                        }
+                    }
+
+                }
+                // Update initial display
+                updateDisplayCompare()
 
             </script>
 
