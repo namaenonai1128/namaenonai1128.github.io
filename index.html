@@ -10,21 +10,21 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:image" content="https://cat3d.github.io/img/rep_img.jpeg">
+    <meta property="og:image" content="https://cat-4d.github.io/img/rep_img.jpg">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1711">
     <meta property="og:image:height" content="576">
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://cat3d.github.io/" />
-    <meta property="og:title" content="CAT3D: Create Anything in 3D with Multi-View Diffusion Models" />
+    <meta property="og:url" content="https://cat-4d.github.io/" />
+    <meta property="og:title" content="CAT4D: Create Anything in 4D with Multi-View Video Diffusion Models" />
     <meta property="og:description"
-        content="Advances in 3D reconstruction have enabled high-quality 3D capture, but require a user to collect hundreds to thousands of images to create a 3D scene. We present CAT3D, a method for creating anything in 3D by simulating this real-world capture process with a multi-view diffusion model. Given any number of input images and a set of target novel viewpoints, our model generates highly consistent novel views of a scene. These generated views can be used as input to robust 3D reconstruction techniques to produce 3D representations that can be rendered from any viewpoint in real-time. CAT3D can create entire 3D scenes in as little as one minute, and outperforms existing methods for single image and few-view 3D scene creation." />
+        content="We present CAT4D, a method for creating 4D (dynamic 3D) scenes from monocular video. CAT4D leverages a multi-view video diffusion model trained on a diverse combination of datasets to enable novel view synthesis at any specified camera poses and timestamps. Combined with a novel sampling approach, this model can transform a single monocular video into a multi-view video, enabling robust 4D reconstruction via optimization of a deformable 3D Gaussian representation.  We demonstrate competitive performance on novel view synthesis and dynamic scene reconstruction benchmarks, and highlight the creative capabilities for 4D scene generation from real or generated videos." />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CAT3D: Create Anything in 3D with Multi-View Diffusion Models" />
+    <meta name="twitter:title" content="CAT4D: Create Anything in 4D with Multi-View Video Diffusion Models" />
     <meta name="twitter:description"
-        content="Advances in 3D reconstruction have enabled high-quality 3D capture, but require a user to collect hundreds to thousands of images to create a 3D scene. We present CAT3D, a method for creating anything in 3D by simulating this real-world capture process with a multi-view diffusion model. Given any number of input images and a set of target novel viewpoints, our model generates highly consistent novel views of a scene. These generated views can be used as input to robust 3D reconstruction techniques to produce 3D representations that can be rendered from any viewpoint in real-time. CAT3D can create entire 3D scenes in as little as one minute, and outperforms existing methods for single image and few-view 3D scene creation." />
-    <meta name="twitter:image" content="https://cat3d.github.io/img/rep_img.jpeg" />
+    content="We present CAT4D, a method for creating 4D (dynamic 3D) scenes from monocular video. CAT4D leverages a multi-view video diffusion model trained on a diverse combination of datasets to enable novel view synthesis at any specified camera poses and timestamps. Combined with a novel sampling approach, this model can transform a single monocular video into a multi-view video, enabling robust 4D reconstruction via optimization of a deformable 3D Gaussian representation.  We demonstrate competitive performance on novel view synthesis and dynamic scene reconstruction benchmarks, and highlight the creative capabilities for 4D scene generation from real or generated videos." />
+    <meta name="twitter:image" content="https://cat-4d.github.io/img/rep_img.jpg" />
 
     <meta http-equiv="origin-trial"
         content="AgTx0EwEo9k7FU+uQs2+KfM3RqolxyWv7ZRcs1cz0siAnvPde/MVEcQS61F6sCemUSj464Fi+nuEzUA/UeuJ6A0AAABheyJvcmlnaW4iOiJodHRwczovL2NhdC00ZC5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IldlYkdQVVN1Ymdyb3Vwc0ZlYXR1cmVzIiwiZXhwaXJ5IjoxNzQ0NzYxNTk5fQ==" />
@@ -315,7 +315,7 @@
                                 At the core of CAT4D is a multi-view video diffusion model that disentangles the
                                 controls of
                                 camera and scene motions.
-                                We demonstrate this by generating generate three types of output sequences given 3 input
+                                We demonstrate this by generating three types of output sequences given 3 input
                                 images (with camera poses): 1) fixed viewpoint and varying time, 2) varying viewpoint
                                 and
                                 fixed time, and 3) varying viewpoint and varying time.
@@ -778,8 +778,6 @@
 
                 </script>
 
-                <br>
-                <br>
 
                 <div class="col-md-8 offset-md-2 text-start">
                     <h4>
@@ -787,7 +785,8 @@
                     </h4>
 
                     <p class="text-justify" style="text-align: left;">
-                        TBA.
+                        We would like to thank Arthur Brussee, Philipp Henzler, Daniel Watson, Jiahui Lei, Hang Gao, Qianqian Wang, Stan Szymanowicz, Jiapeng Tang, Hadi Alzayer and Angjoo Kanazawa for their valuable contributions.
+                        We also extend our gratitude to Shlomi Fruchter, Kevin Murphy, Mohammad Babaeizadeh, Han Zhang and Amir Hertz for training the base text-to-image latent diffusion model.
                         <br><br><br>
                     </p>
                 </div>
@@ -817,7 +816,7 @@
 
                     <p class="text-justify" style="text-align: left;">
                         <i>
-                            The website template was borrowed from <a href="https://cat3d.github.io">CAT3D</a>.
+                            The website template was borrowed from <a href="https://cat3d.github.io">CAT3D</a>. The 4D interactive viewer powered by <a href="https://github.com/ArthurBrussee/brush">Brush</a>.
                         </i>
                     </p>
                 </div>
