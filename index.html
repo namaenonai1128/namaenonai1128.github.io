@@ -66,6 +66,13 @@
         const warningElement = document.getElementById('webgpu-warning');
         const canvasElement = document.getElementById('brush_canvas');
 
+        const originalFocus = HTMLElement.prototype.focus;
+        HTMLElement.prototype.focus = function () {
+            if (!this.matches('[id="brush_canvas"]')) {
+                originalFocus.apply(this, arguments);
+            }
+        };
+
         if (isWebGPUSupported) {
             const wasm = await init({ module_or_path: '/brush-demo/brush-desktop-14701099d5a46866_bg.wasm' });
             window.wasmBindings = bindings;
