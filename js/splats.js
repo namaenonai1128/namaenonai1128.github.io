@@ -1,6 +1,4 @@
 
-import { OrbitControls } from "./OrbitControls.js";
-import * as SPLAT from "https://cdn.jsdelivr.net/npm/gsplat@latest";
 const bucket = "https://storage.googleapis.com/mf_gaussian_splats"
 
 function shuffleArray(array) {
@@ -32,115 +30,8 @@ async function listFolders() {
     return keys.filter(f => !f.includes("."))
 }
 
-export function createSplatView(splatParent) {
-    const parentDiv = document.getElementById(splatParent);
-    const canvas = parentDiv.querySelector("canvas");
-    const progressDialog = parentDiv.querySelector("#progress-dialog");
-    const progressIndicator = progressDialog.querySelector("#progress-indicator");
-    const view = new Object();
-    view.canvas = canvas;
-    view.progressDialog = progressDialog;
-    view.progressIndicator = progressIndicator;
-    view.runningAnimation = null;
-    view.loading = false;
-    view.lastClick = new Date()
-    return view;
-}
 
-export async function setSplatScene(name, view) {
-    view.loading = true;
-    view.lastClick = new Date();
-
-    const startRadius = 0.8
-
-    const cameraData = new SPLAT.CameraData();
-    cameraData.fx = 0.9 * startRadius * view.canvas.offsetWidth
-    cameraData.fy = 0.9 * startRadius * view.canvas.offsetHeight
-
-    const camera = new SPLAT.Camera(cameraData);
-    const renderer = new SPLAT.WebGLRenderer(view.canvas);
-    const scene = new SPLAT.Scene();
-
-    // Load and convert ply from url
-    view.progressDialog.show();
-    view.progressIndicator.value = 0.0;
-
-    const splat = await SPLAT.PLYLoader.LoadAsync(bucket + "/" + name, scene, (progress) => (view.progressIndicator.value = progress * 100));
-
-    // NerfStudio and gsplat.js don't agree on coordinate frames, just rotate after loading for now.
-    // Could try to add this as a preprocessing step in the future, this is not ideal :)
-    // Also compensate for the slight y offset the nerf is traine with - which means a small rotation 
-    // on the x-axis.
-    const rotation = new SPLAT.Vector3(Math.PI - Math.PI / 20.0, Math.PI, 0);
-    splat.rotation = SPLAT.Quaternion.FromEuler(rotation);
-    splat.applyRotation();
-
-    view.progressDialog.close();
-    // Not sure if these are meant to be public, but it's javascript anything goes :)
-    var controls = new OrbitControls(camera, view.canvas, /*alpha=*/0.0, /*beta=*/0.0, /*radius=*/startRadius, /*enableKeyboardControls=*/false);
-    controls.minAngle = -10
-    controls.maxAngle = 10
-    controls.minZoom = 0.6
-    controls.maxZoom = 0.9
-    controls.zoomSpeed = 0.03
-    controls.panSpeed = 0.2
-    controls.orbitSpeed = 1.75
-    controls.maxPanDistance = 0.05
-
-    const newAnimation = view.runningAnimation == null;
-
-    if (newAnimation) {
-        view.canvas.addEventListener("mousedown", function () {
-            view.lastClick = new Date();
-            view.interacting = true;
-        });
-        view.canvas.addEventListener("mouseup", function () {
-            view.lastClick = new Date();
-            view.interacting = false;
-        });
-    }
-
-    // Render loop
-    let previousTimestamp = undefined;
-    let previousDeltaTime = undefined;
-    view.runningAnimation = (timestamp) => {
-        var deltaTime = 0.0;
-        if (previousTimestamp !== undefined) {
-            deltaTime = (timestamp - previousTimestamp) / 1000;
-        }
-        // After alt-tabbing, deltaTime can go up very high... just resume the animation where it was.
-        if (deltaTime > 0.1 && previousDeltaTime !== undefined) {
-            deltaTime = previousDeltaTime;
-        }
-        previousTimestamp = timestamp;
-        previousDeltaTime = deltaTime;
-
-        if (!view.interacting) {
-            const timeToSpin = 0.5;
-            const accelTime = 4.0;
-            const maxSpinSpeed = 0.2;
-
-            const timeSinceClick = view.lastClick == undefined ? undefined : (new Date() - view.lastClick) / 1000.0;
-            if (timeSinceClick > timeToSpin || timeSinceClick === undefined) {
-                const speed = timeSinceClick === undefined ? maxSpinSpeed : Math.min(Math.max(timeSinceClick / accelTime - timeToSpin, 0.0), 1.0) * maxSpinSpeed;
-                controls.rotateCameraAngle(speed * deltaTime, 0.0);
-            }
-        }
-
-        controls.update();
-
-        renderer.render(scene, camera);
-        requestAnimationFrame(view.runningAnimation);
-    };
-
-    if (newAnimation) {
-        requestAnimationFrame(view.runningAnimation);
-    }
-
-    view.loading = false;
-}
-
-export async function setupCarousel(view, carousel) {
+export async function setupCarousel(viewer, carousel) {
     let files = await listFolders();
 
     shuffleArray(files);
@@ -151,10 +42,6 @@ export async function setupCarousel(view, carousel) {
     );
 
     async function onClickSplatThumb(splatName) {
-        if (view.loading) {
-            // Only allow one splat at a time to load otherwise things get messy.
-            return;
-        }
         const elem = elements[splatName];
         if (elem.classList.contains("active")) {
             return;
@@ -164,14 +51,12 @@ export async function setupCarousel(view, carousel) {
         const items = [...itemsParent.getElementsByClassName('splat-carousel-item')];
         currentIndex = items.indexOf(elem);
 
-        elem.classList.add("loading");
-
-        await setSplatScene(splatName + "/splat.ply", view)
+        // TODO TODO:
+        viewer.load_url(bucket + "/" + splatName + "/splat.ply");
 
         Object.values(elements).forEach(e => {
             e.classList.remove("active");
         });
-        elem.classList.remove("loading");
         elem.classList.add("active");
     }
 
