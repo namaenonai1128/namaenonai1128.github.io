@@ -420,13 +420,13 @@ input:checked+.slider:after {
 
 .scene-pill-large {
   transition: transform 0.3s;
-  width: 140px;
+  width: 80px;
   border-radius: 5px;
 }
 
 .scene-pill-large:hover {
   transition: transform 0.3s;
-  width: 140px;
+  width: 80px;
   border-radius: 5px;
   scale: 1.1;
   transition: scale 0.1s;
