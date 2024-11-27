@@ -235,11 +235,11 @@
 
             <div id="viewer">
                 <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <h3>Interactive Viewer</h3>
+		    <div class="col-md-8 offset-md-2 rounded card" style="background-color: #d0d5ec;">
+			<h3 style="text-align: center;">Interactive Viewer</h3>
 
-                        <p class="text-justify" style="text-align: left;">
-                            Click on the images below to render 4D scenes in real-time in your browser, powered by <a href="https://github.com/ArthurBrussee/brush">Brush</a>! Note that this is experimental and quality may be reduced.
+<p class="text-center" style="text-align: center;">
+                            Click on the images below to render 4D scenes in real-time in your browser, powered by <a href="https://github.com/ArthurBrussee/brush">Brush</a>! <br>Note that this is experimental and quality may be reduced.
                         </p>
 
                         <div id="webgpu-warning" style="display: none" class="warning">
@@ -259,7 +259,7 @@
                         </div>
 
 
-                        <canvas id="brush_canvas" style="width: 100%; max-width:440px; max-height:440px; aspect-ratio: 1/1;"></canvas>
+                        <canvas id="brush_canvas" style="width: 100%; max-width:440px; max-height:440px; aspect-ratio: 1/1; text-align:center; display: block; position: relative; margin-left: auto; margin-right: auto;"></canvas>
 
                         <div class="pill-row scene-pills" id="viewer-pills" role="group" aria-relevant="additions text">
 
