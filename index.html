@@ -59,8 +59,7 @@
     <script src="js/synced_video_selector.js"></script>
 
     <script type="module">
-        import init, * as bindings from '/brush-demo/brush-desktop-959bf0245d12460b.js';
-
+        import init, * as bindings from '/brush-demo/brush-desktop-cfe413afb3e2c900.js';
         const isWebGPUSupported = 'gpu' in navigator;
         const warningElement = document.getElementById('webgpu-warning');
         const canvasElement = document.getElementById('brush_canvas');
@@ -73,7 +72,7 @@
         };
 
         if (isWebGPUSupported) {
-            const wasm = await init({ module_or_path: '/brush-demo/brush-desktop-959bf0245d12460b_bg.wasm' });
+            const wasm = await init({ module_or_path: '/brush-demo/brush-desktop-cfe413afb3e2c900_bg.wasm' });
 
             window.wasmBindings = bindings;
             dispatchEvent(new CustomEvent("TrunkApplicationStarted", { detail: { wasm } }));
@@ -89,7 +88,7 @@
         window.addEventListener("TrunkApplicationStarted", (e) => {
             // Load with an initial URL.
             var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
-            const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=1.0&min_radius=1.0&max_radius=5.&radius=4.0&min_pitch=-20.0&max_pitch=20.0&min_yaw=-20.0&max_yaw=20.0`)
+            const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=1.0&min_radius=1.5&max_radius=4.5&radius=3.75&min_pitch=-20.0&max_pitch=20.0&min_yaw=-25.0&max_yaw=25.0`)
             // setupCarousel(viewer, document.querySelector("#splat-carousel"));
             window.viewer = viewer;
         });
@@ -235,11 +234,13 @@
 
             <div id="viewer">
                 <div class="row">
-		    <div class="col-md-8 offset-md-2 rounded card" style="background-color: #d0d5ec;">
-			<h3 style="text-align: center;">Interactive Viewer</h3>
+                    <div class="col-md-8 offset-md-2 rounded card" style="background-color: #d0d5ec;">
+                        <h3 style="text-align: center;">Interactive Viewer</h3>
 
-<p class="text-center" style="text-align: center;">
-                            Click on the images below to render 4D scenes in real-time in your browser, powered by <a href="https://github.com/ArthurBrussee/brush">Brush</a>! <br>Note that this is experimental and quality may be reduced.
+                        <p class="text-center" style="text-align: center;">
+                            Click on the images below to render 4D scenes in real-time in your browser, powered by <a
+                                href="https://github.com/ArthurBrussee/brush">Brush</a>! <br>Note that this is
+                            experimental and quality may be reduced.
                         </p>
 
                         <div id="webgpu-warning" style="display: none" class="warning">
@@ -259,7 +260,8 @@
                         </div>
 
 
-                        <canvas id="brush_canvas" style="width: 100%; max-width:440px; max-height:440px; aspect-ratio: 1/1; text-align:center; display: block; position: relative; margin-left: auto; margin-right: auto;"></canvas>
+                        <canvas id="brush_canvas"
+                            style="width: 100%; max-width:450px; aspect-ratio: 1/1; text-align:center; display: block; position: relative; margin-left: auto; margin-right: auto;"></canvas>
 
                         <div class="pill-row scene-pills" id="viewer-pills" role="group" aria-relevant="additions text">
 
