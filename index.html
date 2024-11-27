@@ -88,7 +88,7 @@
 
         window.addEventListener("TrunkApplicationStarted", (e) => {
             // Load with an initial URL.
-            var start_url = "https://storage.googleapis.com/mf_gaussian_splats/4d_gaussians/137923064/kling-cat-potato-in-water_deform3dgs.ply"
+            var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
             const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=1.0&min_radius=1.0&max_radius=5.&radius=4.0&min_pitch=-20.0&max_pitch=20.0&min_yaw=-20.0&max_yaw=20.0`)
             // setupCarousel(viewer, document.querySelector("#splat-carousel"));
             window.viewer = viewer;
@@ -262,22 +262,7 @@
                         <canvas id="brush_canvas" style="width: 70%; aspect-ratio: 1/1;"></canvas>
 
                         <div class="pill-row scene-pills" id="viewer-pills" role="group" aria-relevant="additions text">
-                            <div class="pill scene-pill-large" data-value="gen3alpha-gaint">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/gen3alpha-gaint_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/gen3alpha-gaint.png">
-                                </a>
-                            </div>
-                            
-                            
-                            <div class="pill scene-pill-large" data-value="genmo-cartoon-duck">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/genmo-cartoon-duck_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/genmo-cartoon-duck.png">
-                                </a>
-                            </div>
-                            
-                            
+
                             <div class="pill scene-pill-large" data-value="genmo-coffee-machine">
                                 <a
                                     onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/genmo-coffee-machine_deform3dgs_pruned.ply")'>
@@ -322,14 +307,6 @@
                                 <a
                                     onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/hailuo-bee_deform3dgs_pruned.ply")'>
                                     <img class="card-img" src="videos/viewer_thumbnails/hailuo-bee.png">
-                                </a>
-                            </div>
-                            
-                            
-                            <div class="pill scene-pill-large" data-value="hailuo-dragon">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/hailuo-dragon_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/hailuo-dragon.png">
                                 </a>
                             </div>
                             
@@ -461,15 +438,6 @@
                                 </a>
                             </div>
                             
-                            
-                            <div class="pill scene-pill-large" data-value="kling-hippo-dancing">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-hippo-dancing_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/kling-hippo-dancing.png">
-                                </a>
-                            </div>
-                            
-                            
                             <div class="pill scene-pill-large" data-value="kling-kungfu-cat">
                                 <a
                                     onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-kungfu-cat_deform3dgs_pruned.ply")'>
@@ -483,16 +451,7 @@
                                     onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-mood-fast-play_deform3dgs_pruned.ply")'>
                                     <img class="card-img" src="videos/viewer_thumbnails/kling-mood-fast-play.png">
                                 </a>
-                            </div>
-                            
-                            
-                            <div class="pill scene-pill-large" data-value="kling-panda-drinking-beer">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-panda-drinking-beer_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/kling-panda-drinking-beer.png">
-                                </a>
-                            </div>
-                            
+                            </div>                            
                             
                             <div class="pill scene-pill-large" data-value="kling-panda-playing-guitar">
                                 <a
@@ -510,45 +469,13 @@
                             </div>
                             
                             
-                            <div class="pill scene-pill-large" data-value="kling-rabbit-guitar-cartoon">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-rabbit-guitar-cartoon_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/kling-rabbit-guitar-cartoon.png">
-                                </a>
-                            </div>
-                            
-                            
                             <div class="pill scene-pill-large" data-value="kling-turtle-violin">
                                 <a
                                     onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-turtle-violin_deform3dgs_pruned.ply")'>
                                     <img class="card-img" src="videos/viewer_thumbnails/kling-turtle-violin.png">
                                 </a>
                             </div>
-                            
-                            
-                            <div class="pill scene-pill-large" data-value="kling-two-cats-dancing">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-two-cats-dancing_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/kling-two-cats-dancing.png">
-                                </a>
-                            </div>
-                            
-                            
-                            <div class="pill scene-pill-large" data-value="pexels-butterfly-on-flower">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/pexels-butterfly-on-flower_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/pexels-butterfly-on-flower.png">
-                                </a>
-                            </div>
-                            
-                            
-                            <div class="pill scene-pill-large" data-value="pexels-dog2">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/pexels-dog2_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/pexels-dog2.png">
-                                </a>
-                            </div>
-                            
+
                             
                             <div class="pill scene-pill-large" data-value="pexels-dog5">
                                 <a
@@ -582,29 +509,12 @@
                             </div>
                             
                             
-                            <div class="pill scene-pill-large" data-value="sora-dog-beret">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/sora-dog-beret_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/sora-dog-beret.png">
-                                </a>
-                            </div>
-                            
-                            
                             <div class="pill scene-pill-large" data-value="sora-mammoths">
                                 <a
                                     onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/sora-mammoths_deform3dgs_pruned.ply")'>
                                     <img class="card-img" src="videos/viewer_thumbnails/sora-mammoths.png">
                                 </a>
                             </div>
-                            
-                            
-                            <div class="pill scene-pill-large" data-value="sora-monkey-cut">
-                                <a
-                                    onclick='window.viewer.load_url("https://storage.googleapis.com/realtime-nerf-360/cat4d/sora-monkey-cut_deform3dgs_pruned.ply")'>
-                                    <img class="card-img" src="videos/viewer_thumbnails/sora-monkey-cut.png">
-                                </a>
-                            </div>
-                            
                             
                             <div class="pill scene-pill-large" data-value="sora-monster-with-melting-candle">
                                 <a
